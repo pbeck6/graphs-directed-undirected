@@ -3,6 +3,9 @@
 # Assignment:
 # Description:
 
+import heapq
+from collections import deque
+
 class DirectedGraph:
     """
     Class to implement directed weighted graph

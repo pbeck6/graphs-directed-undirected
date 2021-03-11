@@ -1,8 +1,10 @@
-# Course: 
-# Author: 
-# Assignment: 
-# Description:
+# Course: CS 261
+# Author: Philip Beck
+# Assignment: 6
+# Description: Implements graph ADT using Python dictionaries
 
+import heapq
+from collections import deque
 
 class UndirectedGraph:
     """
@@ -44,68 +46,120 @@ class UndirectedGraph:
         """
         Add new vertex to the graph
         """
+        if v in self.adj_list.keys():
+            return
+        else:
+            self.adj_list[v] = []
         
     def add_edge(self, u: str, v: str) -> None:
         """
         Add edge to the graph
         """
-        
+        if u == v:
+            return
+        elif u not in self.adj_list.keys() and v not in self.adj_list.keys():
+            self.adj_list[u] = [v]
+            self.adj_list[v] = [u]
+        elif u in self.adj_list.keys() and v not in self.adj_list.keys():
+            self.adj_list[u].append(v)
+            self.adj_list[v] = [u]
+        elif u not in self.adj_list.keys() and v in self.adj_list.keys():
+            self.adj_list[u] = [v]
+            self.adj_list[v].append(u)
+        else:
+            if u in self.adj_list[v] or v in self.adj_list[u]:
+                return
+            else:
+                self.adj_list[u].append(v)
+                self.adj_list[v].append(u)
 
     def remove_edge(self, v: str, u: str) -> None:
         """
         Remove edge from the graph
         """
-        
+        if u not in self.adj_list.keys() or v not in self.adj_list.keys():
+            return
+        elif u not in self.adj_list[v] or v not in self.adj_list[u]:
+            return
+        else:
+            self.adj_list[v].remove(u)
+            self.adj_list[u].remove(v)
 
     def remove_vertex(self, v: str) -> None:
         """
         Remove vertex and all connected edges
         """
-        
+        if v not in self.adj_list.keys():
+            return
+        #remove vertex from neighbors
+        for vertex in self.adj_list[v]:
+            self.adj_list[vertex].remove(v)
+        #remove vertex from list
+        self.adj_list.pop(v)
 
     def get_vertices(self) -> []:
         """
         Return list of vertices in the graph (any order)
         """
-       
+        vertices = []
+        for key in self.adj_list.keys():
+            vertices.append(key)
+        return vertices
 
     def get_edges(self) -> []:
         """
         Return list of edges in the graph (any order)
         """
-        
+        edges = []
+        edge_dict = self.adj_list.copy()
+        for key in edge_dict.keys():
+            if edge_dict[key] != []:
+                for neighbor in edge_dict[key]:
+                    edges.append((key, neighbor))
+                    edge_dict[neighbor].remove(key)
+        edge_dict = None
+        return edges
 
     def is_valid_path(self, path: []) -> bool:
         """
         Return true if provided path is valid, False otherwise
         """
-       
+        if path == []:
+            return True
+
+        for i in range(len(path)):
+            if path[i] not in self.adj_list.keys():
+                return False
+            elif i == (len(path) - 1):
+                return True
+            elif path[i + 1] not in self.adj_list[path[i]]:
+                return False
 
     def dfs(self, v_start, v_end=None) -> []:
         """
         Return list of vertices visited during DFS search
         Vertices are picked in alphabetical order
         """
-       
+        pass
 
     def bfs(self, v_start, v_end=None) -> []:
         """
         Return list of vertices visited during BFS search
         Vertices are picked in alphabetical order
         """
-        
+        pass
 
     def count_connected_components(self):
         """
         Return number of connected componets in the graph
         """
-      
+        pass
 
     def has_cycle(self):
         """
         Return True if graph contains a cycle, False otherwise
         """
-       
+        pass
 
    
 
