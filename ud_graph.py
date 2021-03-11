@@ -115,10 +115,8 @@ class UndirectedGraph:
 
         #visit every vertex
         for key in edge_dict.keys():
-
             #ignore unconnected vertices
             if edge_dict[key] != []:
-            
                 #build edge tuple, remove duplicates
                 for neighbor in edge_dict[key]:
                     edges.append((key, neighbor))
@@ -141,11 +139,9 @@ class UndirectedGraph:
             #catch invalid vertices
             if path[i] not in self.adj_list.keys():
                 return False
-
             #successful path
             elif i == (len(path) - 1):
                 return True
-            
             #next vertex is not adjacent
             elif path[i + 1] not in self.adj_list[path[i]]:
                 return False
