@@ -112,12 +112,21 @@ class UndirectedGraph:
         """
         edges = []
         edge_dict = self.adj_list.copy()
+
+        #visit every vertex
         for key in edge_dict.keys():
+
+            #ignore unconnected vertices
             if edge_dict[key] != []:
+            
+                #build edge tuple, remove duplicates
                 for neighbor in edge_dict[key]:
                     edges.append((key, neighbor))
                     edge_dict[neighbor].remove(key)
+        
+        #dereference copy
         edge_dict = None
+
         return edges
 
     def is_valid_path(self, path: []) -> bool:
@@ -127,11 +136,17 @@ class UndirectedGraph:
         if path == []:
             return True
 
+        #travel entire path
         for i in range(len(path)):
+            #catch invalid vertices
             if path[i] not in self.adj_list.keys():
                 return False
+
+            #successful path
             elif i == (len(path) - 1):
                 return True
+            
+            #next vertex is not adjacent
             elif path[i + 1] not in self.adj_list[path[i]]:
                 return False
 
@@ -140,8 +155,30 @@ class UndirectedGraph:
         Return list of vertices visited during DFS search
         Vertices are picked in alphabetical order
         """
-        pass
+        if v_start not in self.adj_list.keys():
+            return []
+        
+        if v_end not in self.adj_list.keys():
+            v_end = None
 
+        reachable = []
+        stack = [v_start]
+        
+        while stack != []:
+            v = stack.pop()
+            
+            if v == v_end:
+                reachable.append(v)
+                return reachable
+
+            #travel to next vertex in alphabetical order
+            if v not in reachable:
+                reachable.append(v)
+                for neighbor in sorted(self.adj_list[v], reverse=True):
+                    stack.append(neighbor)
+        
+        return reachable
+                
     def bfs(self, v_start, v_end=None) -> []:
         """
         Return list of vertices visited during BFS search
