@@ -55,33 +55,59 @@ class DirectedGraph:
 
     def add_vertex(self) -> int:
         """
-        TODO: Write this implementation
+        Adds vertex, returns # of vertices
         """
-        pass
+        self.adj_matrix.append([0]) 
+        self.v_count += 1
+
+        #update number of columns in each row
+        for _ in range(self.v_count - 1):
+            self.adj_matrix[self.v_count - 1].append(0)
+        for i in range(self.v_count - 1):
+            self.adj_matrix[i].append(0)
+        return self.v_count
 
     def add_edge(self, src: int, dst: int, weight=1) -> None:
         """
-        TODO: Write this implementation
+        Adds/updates weighted edge between two vertices
         """
-        pass
+        if src >= self.v_count or dst >= self.v_count \
+            or weight < 1 or src == dst or src < 0 or dst < 0:
+            return
+    
+        else:
+            self.adj_matrix[src][dst] = weight
 
     def remove_edge(self, src: int, dst: int) -> None:
         """
-        TODO: Write this implementation
+        Removes directed edge between two vertices
         """
-        pass
+        if src >= self.v_count or dst >= self.v_count \
+            or src < 0 or dst < 0:
+            return
+
+        else:
+            self.adj_matrix[src][dst] = 0
 
     def get_vertices(self) -> []:
         """
-        TODO: Write this implementation
+        Returns a list of vertices
         """
-        pass
+        vertices = []
+        for i in range(self.v_count):
+            vertices.append(i)
+        return vertices
 
     def get_edges(self) -> []:
         """
-        TODO: Write this implementation
+        Returns list of edges as tuples -> (src,dst,weight)
         """
-        pass
+        edges = []
+        for i in range(self.v_count):
+            for j in range(self.v_count):
+                if self.adj_matrix[i][j] > 0:
+                    edges.append((i, j, self.adj_matrix[i][j]))
+        return edges
 
     def is_valid_path(self, path: []) -> bool:
         """
