@@ -180,13 +180,50 @@ class UndirectedGraph:
         Return list of vertices visited during BFS search
         Vertices are picked in alphabetical order
         """
-        pass
+        if v_start not in self.adj_list.keys():
+            return []
+        
+        if v_end not in self.adj_list.keys():
+            v_end = None
+
+        reachable = []
+        queue = [v_start]
+    
+        while queue != []:
+            v = queue.pop(0)
+
+            if v == v_end:
+                reachable.append(v)
+                return reachable
+
+            if v not in reachable:
+                reachable.append(v)
+                for neighbor in sorted(self.adj_list[v]):
+                    if neighbor not in reachable:
+                        queue.append(neighbor)
+
+        return reachable
 
     def count_connected_components(self):
         """
         Return number of connected componets in the graph
         """
-        pass
+        complete = sorted(self.adj_list.keys())
+        v = complete[0]
+        total_comps = []
+        quantity = 0
+
+        while total_comps != complete:
+            quantity += 1
+            total_comps.extend(self.bfs(v))
+
+            #complete list of vertices are already sorted
+            if sorted(total_comps) == complete:
+                return quantity
+
+            #cast to sets and find disconnected component
+            else:
+                v = list(set(complete).difference(set(total_comps)))[0]
 
     def has_cycle(self):
         """
