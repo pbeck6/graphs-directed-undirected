@@ -1,7 +1,7 @@
 # Course: CS 261
 # Author: Philip Beck
 # Assignment: 6
-# Description: Implements graph ADT using Python dictionaries
+# Description: Implements undirected graph ADT using Python dictionaries
 
 import heapq
 from collections import deque
@@ -231,7 +231,7 @@ class UndirectedGraph:
         """
         #check multiple connected components
         for i in list(self.adj_list.keys()):
-            #initialize visited with root
+            #initialize visited list with root
             visited = [i]
             #initialize stack with 2nd-degree neighbors
             for adjacent in self.adj_list[i]:

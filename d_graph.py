@@ -1,7 +1,7 @@
 # Course: CS261 - Data Structures
-# Author:
-# Assignment:
-# Description:
+# Author: Philip Beck
+# Assignment: 6
+# Description: Implements directed graph ADT using Python dictionaries
 
 import heapq
 from collections import deque
