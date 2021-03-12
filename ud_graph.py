@@ -204,7 +204,7 @@ class UndirectedGraph:
 
         return reachable
 
-    def count_connected_components(self):
+    def count_connected_components(self) -> int:
         """
         Return number of connected componets in the graph
         """
@@ -225,33 +225,43 @@ class UndirectedGraph:
             else:
                 v = list(set(complete).difference(set(total_comps)))[0]
 
-    def has_cycle(self):
+    def has_cycle(self) -> bool:
         """
         Return True if graph contains a cycle, False otherwise
-        Uses DFS while checking for back edges
         """
-        vertices = list(self.adj_list.keys())
-        
-        for root in vertices:
-            home = set()
-            stack = [root]
-            while stack != []:
-                v = stack.pop()
-                home.add(v)
-
-
-    """
-                if self.adj_list[v] != []:
-                    for adjacent in self.adj_list[v]:
-                        for neighbor in self.adj_list[adjacent]:
-                            if not set(self.adj_list[neighbor]).isdisjoint(home):
-                                return True
-                        queue.append(adjacent)
-            
+        #check multiple connected components
+        for i in list(self.adj_list.keys()):
+            #initialize visited with root
+            visited = [i]
+            #initialize stack with 2nd-degree neighbors
+            for adjacent in self.adj_list[i]:
+                stack = []
+                for neighbor in self.adj_list[adjacent]:
+                    if neighbor != i:
+                        stack.append(neighbor)
+                result = self.has_cycle_helper(adjacent, visited, stack)
+                if result is True:
+                    return True
         return False
-    """
 
-   
+    def has_cycle_helper(self, vertex, visited: list, stack: list) -> bool:
+        while stack != []:
+            v = stack.pop()
+            #check 2nd-degree neighbors for any backedge
+            if not set(self.adj_list[v]).isdisjoint(set(visited)):
+                return True
+            #pass down new lists to next recursive level
+            else:
+                new_visited = visited.copy()
+                new_visited.append(vertex)
+                new_stack = []
+                for adjacent in self.adj_list[v]:
+                    if adjacent != vertex:
+                        new_stack.append(adjacent)
+                result = self.has_cycle_helper(v, new_visited, new_stack)
+                if result is True:
+                    return True
+        return False
 
 
 if __name__ == '__main__':
@@ -344,4 +354,4 @@ if __name__ == '__main__':
         command, edge = case.split()
         u, v = edge
         g.add_edge(u, v) if command == 'add' else g.remove_edge(u, v)
-        print('{:<10}'.format(case), g.has_cycle(), g)
+        print('{:<10}'.format(case), g.has_cycle())
