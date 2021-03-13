@@ -111,19 +111,49 @@ class DirectedGraph:
 
     def is_valid_path(self, path: []) -> bool:
         """
-        TODO: Write this implementation
+        Determines if list of index vertices is valid path
         """
-        pass
+        if len(path) > 1:
+            for i in range(len(path) - 1):
+                if self.adj_matrix[path[i]][path[i+1]] == 0:
+                    return False
+        return True
 
     def dfs(self, v_start, v_end=None) -> []:
         """
-        TODO: Write this implementation
+        Performs depth-first search and returns list
+        of visited vertices in order of visit
         """
-        pass
+        visited = []
+
+        #catch invalid indices
+        if v_start < 0 or v_start >= len(self.adj_matrix):
+            return visited
+        elif v_end is not None:
+            if v_end < 0 or v_end >= len(self.adj_matrix):
+                v_end = None
+
+        #stack goes as deep as possible, then back-tracks
+        else:
+            stack = [v_start]
+            while stack:
+                index = stack.pop()
+                if index not in visited:
+                    visited.append(index)
+                v = self.adj_matrix[index]
+                #check vertices in ascending order
+                for i in range(len(v) - 1, -1, -1):
+                    if v[i] > 0 and i not in visited:
+                        stack.append(i)
+                    if i == v_end:
+                        visited.append(i)
+                        return visited
+            return visited            
 
     def bfs(self, v_start, v_end=None) -> []:
         """
-        TODO: Write this implementation
+        Performs breadth-first search and returns list
+        of visited vertices in order of visit
         """
         pass
 
