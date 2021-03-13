@@ -155,11 +155,34 @@ class DirectedGraph:
         Performs breadth-first search and returns list
         of visited vertices in order of visit
         """
-        pass
+        visited = []
 
-    def has_cycle(self):
+        #catch invalid indices
+        if v_start < 0 or v_start >= len(self.adj_matrix):
+            return visited
+        elif v_end is not None:
+            if v_end < 0 or v_end >= len(self.adj_matrix):
+                v_end = None
+
+        else:
+            queue = [v_start]
+            while queue:
+                index = queue.pop(0)
+                if index not in visited:
+                    visited.append(index)
+                v = self.adj_matrix[index]
+                #check vertices in ascending order
+                for i in range(self.v_count):
+                    if v[i] > 0 and i not in visited:
+                        queue.append(i)
+                    if i == v_end:
+                        visited.append(i)
+                        return visited
+            return visited
+
+    def has_cycle(self) -> bool:
         """
-        TODO: Write this implementation
+        Determines if graph has at least one cycle
         """
         pass
 
