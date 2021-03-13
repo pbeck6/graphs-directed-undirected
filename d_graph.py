@@ -223,13 +223,32 @@ class DirectedGraph:
                     return True
         return False
 
-
     def dijkstra(self, src: int) -> []:
         """
-        TODO: Write this implementation
+        Uses Dijkstra's algorithm to compute length of shortest path
+        to all other vertices from source input, unreachable vertices
+        have value float('inf')
         """
-        pass
+        #tracks distance from source as indexed array
+        distances = [float('inf')] * self.v_count
+        distances[src] = 0
 
+        #queue keeps track of adjacents, keeps out already-visited nodes
+        queue = [src]
+
+        while queue:
+            v = queue.pop(0)
+            for i in range(self.v_count):
+                if self.adj_matrix[v][i] > 0:
+                    #queue will only update with shortest path from 'v' to its adjacents
+                    if (distances[v] + self.adj_matrix[v][i]) < distances[i]:
+                        distances[i] = distances[v] + self.adj_matrix[v][i]
+                        #visited nodes have already loaded their adjacents into queue
+                        if i not in queue:
+                            queue.append(i)
+
+        #shortest paths to all reachable vertices found
+        return distances
 
 if __name__ == '__main__':
 
@@ -300,6 +319,7 @@ if __name__ == '__main__':
     edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
              (3, 1, 5), (2, 1, 23), (3, 2, 7)]
     g = DirectedGraph(edges)
+    print('\n', g)
     for i in range(5):
         print(f'DIJKSTRA {i} {g.dijkstra(i)}')
     g.remove_edge(4, 3)
