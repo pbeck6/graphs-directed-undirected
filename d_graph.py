@@ -184,7 +184,45 @@ class DirectedGraph:
         """
         Determines if graph has at least one cycle
         """
-        pass
+        #check multiple connected components
+        for i in range(self.v_count):
+            #initialize visited list with root
+            visited = [i]
+            #initialize stack with 2nd-degree neighbors
+            adjacent_list = []
+            for j in range(self.v_count):
+                if self.adj_matrix[i][j] > 0:
+                    adjacent_list.append(j)    
+            for adjacent in adjacent_list:
+                neighbor_list = []
+                for k in range(self.v_count):
+                    if self.adj_matrix[adjacent][k] > 0:
+                        neighbor_list.append(k)
+                result = self.has_cycle_helper(adjacent, visited, neighbor_list)
+                if result is True:
+                    return True
+        return False
+
+    def has_cycle_helper(self, vertex, visited: list, stack: list) -> bool:
+        while stack != []:
+            v = stack.pop()
+            #check 2nd-degree neighbors for any cycle
+            for i in visited:
+                if self.adj_matrix[v][i] > 0:
+                    return True
+            #pass down new lists to next recursive level
+            else:
+                new_visited = visited.copy()
+                new_visited.append(vertex)
+                new_stack = []
+                for j in range(self.v_count):
+                    if self.adj_matrix[v][j] > 0:
+                        new_stack.append(j)
+                result = self.has_cycle_helper(v, new_visited, new_stack)
+                if result is True:
+                    return True
+        return False
+
 
     def dijkstra(self, src: int) -> []:
         """
