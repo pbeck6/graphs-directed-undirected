@@ -1,30 +1,31 @@
-# Course: CS261 - Data Structures
 # Author: Philip Beck
-# Assignment: 6
-# Description: Implements directed graph ADT using Python dictionaries
+# Email: stoneroll6@gmail.com
+# Date: 1/17/2021
+# Description:
+#    Implements directed graph ADT 
+#    using Python dictionaries
+#    For educational use only,
+#    Not for commercial use
 
-import heapq
-from collections import deque
 
 class DirectedGraph:
     """
     Class to implement directed weighted graph
-    - duplicate edges not allowed
-    - loops not allowed
-    - only positive edge weights
-    - vertex names are integers
+    - Duplicate edges not allowed
+    - Loops not allowed
+    - Only positive edge weights
+    - Vertex names are integers
     """
 
     def __init__(self, start_edges=None):
         """
         Store graph info as adjacency matrix
-        DO NOT CHANGE THIS METHOD IN ANY WAY
         """
         self.v_count = 0
         self.adj_matrix = []
 
-        # populate graph with initial vertices and edges (if provided)
-        # before using, implement add_vertex() and add_edge() methods
+        # Populate graph with initial vertices and edges (if provided)
+        # Before using, implement add_vertex() and add_edge() methods
         if start_edges is not None:
             v_count = 0
             for u, v, _ in start_edges:
@@ -37,7 +38,6 @@ class DirectedGraph:
     def __str__(self):
         """
         Return content of the graph in human-readable form
-        DO NOT CHANGE THIS METHOD IN ANY WAY
         """
         if self.v_count == 0:
             return 'EMPTY GRAPH\n'
@@ -51,8 +51,6 @@ class DirectedGraph:
         out = f"GRAPH ({self.v_count} vertices):\n{out}"
         return out
 
-    # ------------------------------------------------------------------ #
-
     def add_vertex(self) -> int:
         """
         Adds vertex, returns # of vertices
@@ -60,7 +58,7 @@ class DirectedGraph:
         self.adj_matrix.append([0]) 
         self.v_count += 1
 
-        #update number of columns in each row
+        # Update number of columns in each row
         for _ in range(self.v_count - 1):
             self.adj_matrix[self.v_count - 1].append(0)
         for i in range(self.v_count - 1):
@@ -89,7 +87,7 @@ class DirectedGraph:
         else:
             self.adj_matrix[src][dst] = 0
 
-    def get_vertices(self) -> []:
+    def get_vertices(self) -> list:
         """
         Returns a list of vertices
         """
@@ -98,7 +96,7 @@ class DirectedGraph:
             vertices.append(i)
         return vertices
 
-    def get_edges(self) -> []:
+    def get_edges(self) -> list:
         """
         Returns list of edges as tuples -> (src,dst,weight)
         """
@@ -109,7 +107,7 @@ class DirectedGraph:
                     edges.append((i, j, self.adj_matrix[i][j]))
         return edges
 
-    def is_valid_path(self, path: []) -> bool:
+    def is_valid_path(self, path: list) -> bool:
         """
         Determines if list of index vertices is valid path
         """
@@ -119,21 +117,21 @@ class DirectedGraph:
                     return False
         return True
 
-    def dfs(self, v_start, v_end=None) -> []:
+    def dfs(self, v_start, v_end=None) -> list:
         """
         Performs depth-first search and returns list
         of visited vertices in order of visit
         """
         visited = []
 
-        #catch invalid indices
+        # Catch invalid indices
         if v_start < 0 or v_start >= len(self.adj_matrix):
             return visited
         elif v_end is not None:
             if v_end < 0 or v_end >= len(self.adj_matrix):
                 v_end = None
 
-        #stack goes as deep as possible, then back-tracks
+        # Stack goes as deep as possible, then back-tracks
         else:
             stack = [v_start]
             while stack:
@@ -141,7 +139,7 @@ class DirectedGraph:
                 if index not in visited:
                     visited.append(index)
                 v = self.adj_matrix[index]
-                #check vertices in ascending order
+                # Check vertices in ascending order
                 for i in range(len(v) - 1, -1, -1):
                     if v[i] > 0 and i not in visited:
                         stack.append(i)
@@ -150,14 +148,14 @@ class DirectedGraph:
                         return visited
             return visited            
 
-    def bfs(self, v_start, v_end=None) -> []:
+    def bfs(self, v_start, v_end=None) -> list:
         """
         Performs breadth-first search and returns list
         of visited vertices in order of visit
         """
         visited = []
 
-        #catch invalid indices
+        # Catch invalid indices
         if v_start < 0 or v_start >= len(self.adj_matrix):
             return visited
         elif v_end is not None:
@@ -171,7 +169,7 @@ class DirectedGraph:
                 if index not in visited:
                     visited.append(index)
                 v = self.adj_matrix[index]
-                #check vertices in ascending order
+                # Check vertices in ascending order
                 for i in range(self.v_count):
                     if v[i] > 0 and i not in visited:
                         queue.append(i)
@@ -184,11 +182,11 @@ class DirectedGraph:
         """
         Determines if graph has at least one cycle
         """
-        #check multiple connected components
+        # Check multiple connected components
         for i in range(self.v_count):
-            #initialize visited list with root
+            # Initialize visited list with root
             visited = [i]
-            #initialize stack with 2nd-degree neighbors
+            # Initialize stack with 2nd-degree neighbors
             adjacent_list = []
             for j in range(self.v_count):
                 if self.adj_matrix[i][j] > 0:
@@ -206,11 +204,11 @@ class DirectedGraph:
     def has_cycle_helper(self, vertex, visited: list, stack: list) -> bool:
         while stack != []:
             v = stack.pop()
-            #check 2nd-degree neighbors for any cycle
+            # Check 2nd-degree neighbors for any cycle
             for i in visited:
                 if self.adj_matrix[v][i] > 0:
                     return True
-            #pass down new lists to next recursive level
+            # Pass down new lists to next recursive level
             else:
                 new_visited = visited.copy()
                 new_visited.append(vertex)
@@ -223,36 +221,39 @@ class DirectedGraph:
                     return True
         return False
 
-    def dijkstra(self, src: int) -> []:
+    def dijkstra(self, src: int) -> list:
         """
         Uses Dijkstra's algorithm to compute length of shortest path
         to all other vertices from source input, unreachable vertices
         have value float('inf')
         """
-        #tracks distance from source as indexed array
+        # Tracks distance from source as indexed array
         distances = [float('inf')] * self.v_count
         distances[src] = 0
 
-        #queue keeps track of adjacents, keeps out already-visited nodes
+        # Queue keeps track of adjacents, keeps out already-visited nodes
         queue = [src]
 
         while queue:
             v = queue.pop(0)
             for i in range(self.v_count):
                 if self.adj_matrix[v][i] > 0:
-                    #queue will only update with shortest path from 'v' to its adjacents
+                    # Queue will only update with shortest path from 'v' to its adjacents
                     if (distances[v] + self.adj_matrix[v][i]) < distances[i]:
                         distances[i] = distances[v] + self.adj_matrix[v][i]
-                        #visited nodes have already loaded their adjacents into queue
+                        # Visited nodes have already loaded their adjacents into queue
                         if i not in queue:
                             queue.append(i)
 
-        #shortest paths to all reachable vertices found
+        # Shortest paths to all reachable vertices found
         return distances
+
 
 if __name__ == '__main__':
 
-    print("\nPDF - method add_vertex() / add_edge example 1")
+    # Examples to show graph functionality
+    # Adds vertex or edge to graph
+    print("\nmethod add_vertex() / add_edge example 1")
     print("----------------------------------------------")
     g = DirectedGraph()
     print(g)
@@ -266,8 +267,8 @@ if __name__ == '__main__':
         g.add_edge(src, dst, weight)
     print(g)
 
-
-    print("\nPDF - method get_edges() example 1")
+    # Gets all edges in graph
+    print("\nmethod get_edges() example 1")
     print("----------------------------------")
     g = DirectedGraph()
     print(g.get_edges(), g.get_vertices(), sep='\n')
@@ -276,8 +277,8 @@ if __name__ == '__main__':
     g = DirectedGraph(edges)
     print(g.get_edges(), g.get_vertices(), sep='\n')
 
-
-    print("\nPDF - method is_valid_path() example 1")
+    # Checks if valid path exists
+    print("\nmethod is_valid_path() example 1")
     print("--------------------------------------")
     edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
              (3, 1, 5), (2, 1, 23), (3, 2, 7)]
@@ -286,8 +287,8 @@ if __name__ == '__main__':
     for path in test_cases:
         print(path, g.is_valid_path(path))
 
-
-    print("\nPDF - method dfs() and bfs() example 1")
+    # Demonstrate DFS and BFS
+    print("\nmethod dfs() and bfs() example 1")
     print("--------------------------------------")
     edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
              (3, 1, 5), (2, 1, 23), (3, 2, 7)]
@@ -295,8 +296,8 @@ if __name__ == '__main__':
     for start in range(5):
         print(f'{start} DFS:{g.dfs(start)} BFS:{g.bfs(start)}')
 
-
-    print("\nPDF - method has_cycle() example 1")
+    # Checking for cycle
+    print("\nmethod has_cycle() example 1")
     print("----------------------------------")
     edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
              (3, 1, 5), (2, 1, 23), (3, 2, 7)]
@@ -313,8 +314,8 @@ if __name__ == '__main__':
         print(g.get_edges(), g.has_cycle(), sep='\n')
     print('\n', g)
 
-
-    print("\nPDF - dijkstra() example 1")
+    # Dijkstra function
+    print("\ndijkstra() example 1")
     print("--------------------------")
     edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
              (3, 1, 5), (2, 1, 23), (3, 2, 7)]
