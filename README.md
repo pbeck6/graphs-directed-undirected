@@ -25,11 +25,11 @@
 4. The number of vertices in the graph must be between 0 and 900 inclusive. The number of edges must be less than 10,000.
 
 ### Undirected Graph Methods
-**add_vertex** (self, v: str) -> None:
+#### **add_vertex** (self, v: str) -> None:
 
 This method adds a new vertex to the graph. Vertex names can be any string. If vertex with the same name is already present in the graph, the method does nothing (no exception raised).
 
-**add_edge** (self, u: str, v: str) -> None:
+#### **add_edge** (self, u: str, v: str) -> None:
 
 This method adds a new edge to the graph, connecting two vertices with provided names. If either (or both) vertex names do not exist in the graph, this method will first create them and then create an edge between them. If an edge already exists in the graph, or if u and v refer to the same vertex, the method does nothing (no exception raised).
 
@@ -59,11 +59,11 @@ GRAPH: {
     E: ['C', 'D']}
 ```
 
-**remove_edge** (self, u: str, v: str) -> None:
+#### **remove_edge** (self, u: str, v: str) -> None:
 
 This method removes an edge between two vertices with provided names. If either (or both) vertex names do not exist in the graph, or if there is no edge between them, the method does nothing (no exception raised).
 
-**remove_vertex** (self, v: str) -> None:
+#### **remove_vertex** (self, v: str) -> None:
 
 This method removes a vertex with a given name and all edges incident to it from the graph. If the given vertex does not exist, the method does nothing (no exception raised).
 
