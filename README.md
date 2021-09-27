@@ -26,10 +26,15 @@
 
 ### Undirected Graph Methods
 **add_vertex** (self, v: str) -> None:
+
 This method adds a new vertex to the graph. Vertex names can be any string. If vertex with the same name is already present in the graph, the method does nothing (no exception raised).
+
 **add_edge** (self, u: str, v: str) -> None:
+
 This method adds a new edge to the graph, connecting two vertices with provided names. If either (or both) vertex names do not exist in the graph, this method will first create them and then create an edge between them. If an edge already exists in the graph, or if u and v refer to the same vertex, the method does nothing (no exception raised).
+
 **Example #1:**
+
 g = UndirectedGraph()
 print(g)
 for v in 'ABCDE':
