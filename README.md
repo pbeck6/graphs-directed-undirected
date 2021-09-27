@@ -1,7 +1,7 @@
 
 # graphs-directed-undirected
 
-![Directed graph](https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Directed_acyclic_graph_2.svg/299px-Directed_acyclic_graph_2.svg.png)
+![Undirected graph](https://upload.wikimedia.org/wikipedia/commons/5/57/6n-graf.png)
 
 ## Part 1 Undirected Graph (via Adjacency List)
 
@@ -217,6 +217,7 @@ remove QG False
 add FG True
 remove GE False
 
+![Directed graph](https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Directed_acyclic_graph_2.svg/299px-Directed_acyclic_graph_2.svg.png)
 
 ## Part 2 Directed Graph (via Adjacency Matrix)
 1. DirectedGraph class is designed to support the following type of graph: directed, weighted (positive edge weights only), no duplicate edges, no loops. Cycles are allowed.
