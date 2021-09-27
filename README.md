@@ -33,7 +33,7 @@ This method adds a new vertex to the graph. Vertex names can be any string. If v
 
 This method adds a new edge to the graph, connecting two vertices with provided names. If either (or both) vertex names do not exist in the graph, this method will first create them and then create an edge between them. If an edge already exists in the graph, or if u and v refer to the same vertex, the method does nothing (no exception raised).
 
-**Example #1:**
+**Example:**
 ```
 g = UndirectedGraph()
 print(g)
@@ -67,7 +67,7 @@ This method removes an edge between two vertices with provided names. If either 
 
 This method removes a vertex with a given name and all edges incident to it from the graph. If the given vertex does not exist, the method does nothing (no exception raised).
 
-**Example #1:**
+**Example:**
 ```
 g = UndirectedGraph(['AB', 'AC', 'BC', 'BD', 'CD', 'CE', 'DE'])
 g.remove_vertex('DOES NOT EXIST')
@@ -96,7 +96,7 @@ This method returns a list of vertices of the graph. Order of the vertices in th
 
 This method returns a list of edges in the graph. Each edge is returned as a tuple of two incident vertex names. Order of the edges in the list or order of the vertices incident to each edge does not matter.
 
-**Example #1:**
+**Example:**
 ```
 g = UndirectedGraph()
 print(g.get_edges(), g.get_vertices(), sep='\n')
@@ -115,7 +115,7 @@ print(g.get_edges(), g.get_vertices(), sep='\n')
 
 This method takes a list of vertex names and returns True if the sequence of vertices represents a valid path in the graph (so one can travel from the first vertex in the list to the last vertex in the list, at each step traversing over an edge in the graph). Empty path is considered valid.
 
-**Example #1:**
+**Example:**
 ```
 g = UndirectedGraph(['AB', 'AC', 'BC', 'BD', 'CD', 'CE', 'DE'])
 test_cases = ['ABC', 'ADE', 'ECABDCBE', 'ACDECB', '', 'D', 'Z']
@@ -141,7 +141,7 @@ This method performs a depth-first search (DFS) in the graph and returns a list 
 
 This method works the same as DFS above, except it implements a breadth-first search.
 
-**Example #1:**
+**Example:**
 ```
 edges = ['AE', 'AC', 'BE', 'CE', 'CD', 'CB', 'BD', 'ED', 'BH', 'QG', 'FG']
 g = UndirectedGraph(edges)
@@ -176,7 +176,7 @@ H-A DFS:['H', 'B', 'C', 'A'] BFS:['H', 'B', 'C', 'D', 'E', 'A']
 
 This method returns the number of connected components in the graph.
 
-**Example #1:**
+**Example:**
 ```
 edges = ['AE', 'AC', 'BE', 'CE', 'CD', 'CB', 'BD', 'ED', 'BH', 'QG', 'FG']
 g = UndirectedGraph(edges)
@@ -200,7 +200,7 @@ for case in test_cases:
 
 This method returns True if there is at least one cycle in the graph. If the graph is acyclic, the method returns False.
 
-**Example #1:**
+**Example:**
 ```
 edges = ['AE', 'AC', 'BE', 'CE', 'CD', 'CB', 'BD', 'ED', 'BH', 'QG', 'FG']
 g = UndirectedGraph(edges)
@@ -277,7 +277,7 @@ This method adds a new edge to the graph, connecting two vertices with provided 
 either (or both) vertex indices do not exist in the graph, or if the ​weight​ is not a positive
 integer, or if ​src​ and ​dst​ refer to the same vertex, the method does nothing. If an edge
 already exists in the graph, the method will update its weight.
-**Example #1:**
+**Example:**
 g = DirectedGraph()
 print(g)
 for _ in range(5): g.add_vertex()
@@ -319,7 +319,7 @@ This method returns a list of edges in the graph. Each edge is returned as a tup
 incident vertex indices and weight. First element in the tuple refers to the source vertex.
 Second element in the tuple refers to the destination vertex. Third element in the tuple is
 the weight of the edge. Order of the edges in the list does not matter.
-**Example #1:**
+**Example:**
 g = DirectedGraph()
 print(g.get_edges(), g.get_vertices(), sep='\n')
 edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
@@ -338,7 +338,7 @@ This method takes a list of vertex indices and returns True if the sequence of v
 represents a valid path in the graph (so one can travel from the first vertex in the list to the
 last vertex in the list, at each step traversing over an edge in the graph). Empty path is
 considered valid.
-**Example #1:**
+**Example:**
 edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
 (3, 1, 5), (2, 1, 23), (3, 2, 7)]
 g = DirectedGraph(edges)
@@ -366,7 +366,7 @@ When several options are available for picking the next vertex to continue the s
 example, vertex 5 is explored before vertex 6).
 **bfs** ​(self, v_start: int, v_end=None) -> []:
 This method works the same as DFS above, except it implements a breadth-first search.
-**Example #1:**
+**Example:**
 edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
 (3, 1, 5), (2, 1, 23), (3, 2, 7)]
 g = DirectedGraph(edges)
@@ -383,7 +383,7 @@ print(f'{start} DFS:{g.dfs(start)} BFS:{g.bfs(start)}')
 **has_cycle** ​(self) -> bool:
 This method returns True if there is at least one cycle in the graph. If the graph is acyclic,
 the method returns False.
-**Example #1:**
+**Example:**
 edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
 (3, 1, 5), (2, 1, 23), (3, 2, 7)]
 g = DirectedGraph(edges)
@@ -428,7 +428,7 @@ each vertex in the graph, where value at index 0 is the length of the shortest p
 vertex SRC to vertex 0, value at index 1 is the length of the shortest path from vertex SRC
 to vertex 1 etc. If a certain vertex is not reachable from SRC, returned value will be
 INFINITY (in Python, use float(‘inf’)).
-**Example #1:**
+**Example:**
 edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
 (3, 1, 5), (2, 1, 23), (3, 2, 7)]
 g = DirectedGraph(edges)
