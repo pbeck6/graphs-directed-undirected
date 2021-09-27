@@ -25,11 +25,11 @@
 4. The number of vertices in the graph must be between 0 and 900 inclusive. The number of edges must be less than 10,000.
 
 ### Undirected Graph Methods
-#### **add_vertex** (self, v: str) -> None:
+**add_vertex** (self, v: str) -> None:
 
 This method adds a new vertex to the graph. Vertex names can be any string. If vertex with the same name is already present in the graph, the method does nothing (no exception raised).
 
-#### **add_edge** (self, u: str, v: str) -> None:
+**add_edge** (self, u: str, v: str) -> None:
 
 This method adds a new edge to the graph, connecting two vertices with provided names. If either (or both) vertex names do not exist in the graph, this method will first create them and then create an edge between them. If an edge already exists in the graph, or if u and v refer to the same vertex, the method does nothing (no exception raised).
 
@@ -59,11 +59,11 @@ GRAPH: {
     E: ['C', 'D']}
 ```
 
-#### **remove_edge** (self, u: str, v: str) -> None:
+**remove_edge** (self, u: str, v: str) -> None:
 
 This method removes an edge between two vertices with provided names. If either (or both) vertex names do not exist in the graph, or if there is no edge between them, the method does nothing (no exception raised).
 
-#### **remove_vertex** (self, v: str) -> None:
+**remove_vertex** (self, v: str) -> None:
 
 This method removes a vertex with a given name and all edges incident to it from the graph. If the given vertex does not exist, the method does nothing (no exception raised).
 
@@ -267,30 +267,32 @@ remove GE False
 4. The number of vertices in the graph must be between 0 and 900 inclusive. The number of edges must be less than 10,000.
 
 ### Directed Graph Methods
+
 **add_vertex** (self) -> int:
-This method adds a new vertex to the graph. Vertex name does not need to be provided,
-instead vertex will be assigned a reference index (integer). First vertex created in the graph
-will be assigned index 0, subsequent vertices will have indexes 1, 2, 3 etc. This ​method
-returns a single integer - the number of vertices in the graph after the addition.
-**add_edge** ​(self, src: int, dst: int, weight=1) -> None:
-This method adds a new edge to the graph, connecting two vertices with provided indices. If
-either (or both) vertex indices do not exist in the graph, or if the ​weight​ is not a positive
-integer, or if ​src​ and ​dst​ refer to the same vertex, the method does nothing. If an edge
-already exists in the graph, the method will update its weight.
+
+This method adds a new vertex to the graph. Vertex name does not need to be provided, instead vertex will be assigned a reference index (integer). First vertex created in the graph will be assigned index 0, subsequent vertices will have indexes 1, 2, 3 etc. This method returns a single integer - the number of vertices in the graph after the addition.
+
+**add_edge** (self, src: int, dst: int, weight=1) -> None:
+
+This method adds a new edge to the graph, connecting two vertices with provided indices. If either (or both) vertex indices do not exist in the graph, or if the weight is not a positive integer, or if src and dst refer to the same vertex, the method does nothing. If an edge already exists in the graph, the method will update its weight.
+
 **Example:**
+```
 g = DirectedGraph()
 print(g)
 for _ in range(5): g.add_vertex()
 print(g)
 edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
-(3, 1, 5), (2, 1, 23), (3, 2, 7)]
+    (3, 1, 5), (2, 1, 23), (3, 2, 7)]
 for src, dst, weight in edges:
-g.add_edge(src, dst, weight)
+    g.add_edge(src, dst, weight)
 print(g)
+```
 **Output:**
+```
 EMPTY GRAPH
 GRAPH (5 vertices):
-   |  0  1  2  3  4
+  | 0 1 2 3 4
 .....................
 0 | 0 0 0 0 0
 1 | 0 0 0 0 0
@@ -298,14 +300,14 @@ GRAPH (5 vertices):
 3 | 0 0 0 0 0
 4 | 0 0 0 0 0
 GRAPH (5 vertices):
-   | 0  1  2  3  4
+  | 0 1 2 3 4
 .....................
 0 | 0 10 0 0 0
 1 | 0 0 0 0 15
 2 | 0 23 0 0 0
 3 | 0 5 7 0 0
 4 |12 0 0 3 0
-
+```
 
 **remove_edge** ​(self, u: int, v: int) -> None:
 This method removes an edge between two vertices with provided indices. If either (or
