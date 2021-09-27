@@ -1,6 +1,7 @@
 
 # graphs-directed-undirected
 
+
 ## Part 1 Undirected Graph (via Adjacency List)
 
 1. UndirectedGraph class is designed to support the following type of graph: undirected, unweighted, no duplicate edges, no loops. Cycles are allowed.
@@ -22,7 +23,7 @@
 
 4. The number of vertices in the graph must be between 0 and 900 inclusive. The number of edges must be less than 10,000.
 
-
+### Undirected Graph Methods
 **add_vertex** ​(self, v: str) -> None:
 This method adds a new vertex to the graph. Vertex names can be any string. If vertex with
 the same name is already present in the graph, the method does nothing (no exception raised).
@@ -235,7 +236,7 @@ remove GE False
     
 4. The number of vertices in the graph must be between 0 and 900 inclusive. The number of edges must be less than 10,000.
 
-
+### Directed Graph Methods
 **add_vertex** ​(self)​ -> int:
 This method adds a new vertex to the graph. Vertex name does not need to be provided,
 instead vertex will be assigned a reference index (integer). First vertex created in the graph
