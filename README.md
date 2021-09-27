@@ -1,9 +1,9 @@
 
 # graphs-directed-undirected
 
-![Undirected graph](https://upload.wikimedia.org/wikipedia/commons/5/57/6n-graf.png)
-
 ## Part 1 Undirected Graph (via Adjacency List) - ud_graph.py
+
+![Undirected graph](https://upload.wikimedia.org/wikipedia/commons/5/57/6n-graf.png)
 
 1. UndirectedGraph class is designed to support the following type of graph: undirected, unweighted, no duplicate edges, no loops. Cycles are allowed.
 2. Includes the following methods:
@@ -52,11 +52,11 @@ GRAPH: {}
 GRAPH: {A: [], B: [], C: [], D: [], E: []}
 GRAPH: {A: [], B: [], C: [], D: [], E: []}
 GRAPH: {
-A: ['B', 'C']
-B: ['A', 'C', 'D']
-C: ['A', 'B', 'D', 'E']
-D: ['B', 'C', 'E']
-E: ['C', 'D']}
+    A: ['B', 'C']
+    B: ['A', 'C', 'D']
+    C: ['A', 'B', 'D', 'E']
+    D: ['B', 'C', 'E']
+    E: ['C', 'D']}
 ```
 
 **remove_edge** (self, u: str, v: str) -> None:
@@ -80,11 +80,11 @@ print(g)
 **Output:**
 ```
 GRAPH: {
-A: ['C']
-B: ['C', 'D']
-C: ['A', 'B', 'D', 'E']
-D: ['B', 'C', 'E']
-E: ['C', 'D']}
+    A: ['C']
+    B: ['C', 'D']
+    C: ['A', 'B', 'D', 'E']
+    D: ['B', 'C', 'E']
+    E: ['C', 'D']}
 GRAPH: {A: ['C'], B: ['C'], C: ['A', 'B', 'E'], E: ['C']}
 ```
 
@@ -244,9 +244,10 @@ remove GE False
   
 ***
 
+## Part 2 Directed Graph (via Adjacency Matrix) - d_graph.py
+
 ![Directed graph](https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Directed_acyclic_graph_2.svg/299px-Directed_acyclic_graph_2.svg.png)
 
-## Part 2 Directed Graph (via Adjacency Matrix) - d_graph.py
 1. DirectedGraph class is designed to support the following type of graph: directed, weighted (positive edge weights only), no duplicate edges, no loops. Cycles are allowed.
 2. Includes the following methods:
     - add_vertex() 
