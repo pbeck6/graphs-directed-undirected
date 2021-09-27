@@ -4,7 +4,7 @@
 ## Part 1 Undirected Graph (via Adjacency List)
 
 1. UndirectedGraph class is designed to support the following type of graph: undirected, unweighted, no duplicate edges, no loops. Cycles are allowed.
-2.  Includes the following methods:
+2. Includes the following methods:
     - add_vertex()
     - add_edge() 
     - remove_edge()
@@ -20,7 +20,7 @@
 
     self.adj_list = {'A': ['B', 'C'], 'B': ['A', 'C', 'D'], 'C': ['B', 'A'], 'D': ['B']}
 
-5. The number of vertices in the graph must be between 0 and 900 inclusive. The number of edges must be less than 10,000.
+4. The number of vertices in the graph must be between 0 and 900 inclusive. The number of edges must be less than 10,000.
 
 
 **add_vertex** ​(self, v: str) -> None:
@@ -217,10 +217,7 @@ remove GE False
 
 
 ## Part 2 Directed Graph (via Adjacency Matrix)
-1. DirectedGraph class is designed to support the following type of graph:
-directed, weighted (positive edge weights only), no duplicate edges, no loops. Cycles
-are allowed.
-
+1. DirectedGraph class is designed to support the following type of graph: directed, weighted (positive edge weights only), no duplicate edges, no loops. Cycles are allowed.
 2. Includes the following methods:
     - add_vertex() 
     - add_edge() 
@@ -232,13 +229,11 @@ are allowed.
     - bfs() 
     - has_cycle()
     - dijkstra()
-3. Directed graphs are stored as a two dimensional matrix, which is a list of lists
-    in Python. Element on the ​i​-th row and ​j​-th column in the matrix is the weight of
-    the edge going from the vertex with index ​i​ to the vertex with index ​j​. If there is no
-    edge between those vertices, the value is zero.​ ​So for the graph pictured below:
+3. Directed graphs are stored as a two dimensional matrix, which is a list of lists in Python. Element on the i-th row and j-th column in the matrix is the weight of the edge going from the vertex with index i to the vertex with index j. If there is no edge between those vertices, the value is zero. An example would be:
+
     self.adj_matrix = [[0, 10, 0, 0], [0, 0, 20, 5], [30, 0, 0, 0], [0, 0, 0, 0]]
-4. The number of vertices in the graph must be between 0 and 900 inclusive. The
-    number of edges must be less than 10,000.
+    
+4. The number of vertices in the graph must be between 0 and 900 inclusive. The number of edges must be less than 10,000.
 
 
 **add_vertex** ​(self)​ -> int:
