@@ -1,6 +1,7 @@
 
 # graphs-directed-undirected
 
+![Directed graph](https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Directed_acyclic_graph_2.svg/299px-Directed_acyclic_graph_2.svg.png)
 
 ## Part 1 Undirected Graph (via Adjacency List)
 
