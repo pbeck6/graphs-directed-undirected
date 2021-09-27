@@ -293,7 +293,7 @@ print(g)
 EMPTY GRAPH
 GRAPH (5 vertices):
   | 0 1 2 3 4
-.....................
+..............
 0 | 0 0 0 0 0
 1 | 0 0 0 0 0
 2 | 0 0 0 0 0
@@ -301,7 +301,7 @@ GRAPH (5 vertices):
 4 | 0 0 0 0 0
 GRAPH (5 vertices):
   | 0 1 2 3 4
-.....................
+...............
 0 | 0 10 0 0 0
 1 | 0 0 0 0 15
 2 | 0 23 0 0 0
@@ -309,96 +309,104 @@ GRAPH (5 vertices):
 4 |12 0 0 3 0
 ```
 
-**remove_edge** ​(self, u: int, v: int) -> None:
-This method removes an edge between two vertices with provided indices. If either (or
-both) vertex indices do not exist in the graph, or if there is no edge between them, the
-method does nothing (no exception raised).
-**get_vertices** ​(self) -> []:
-This method returns a list of vertices of the graph. Order of the vertices in the list does not
-matter.
-**get_edges** ​(self) -> []:
-This method returns a list of edges in the graph. Each edge is returned as a tuple of two
-incident vertex indices and weight. First element in the tuple refers to the source vertex.
-Second element in the tuple refers to the destination vertex. Third element in the tuple is
-the weight of the edge. Order of the edges in the list does not matter.
+**remove_edge** (self, u: int, v: int) -> None:
+
+This method removes an edge between two vertices with provided indices. If either (or both) vertex indices do not exist in the graph, or if there is no edge between them, the method does nothing (no exception raised).
+
+**get_vertices** (self) -> []:
+
+This method returns a list of vertices of the graph. Order of the vertices in the list does not matter.
+
+**get_edges** (self) -> []:
+
+This method returns a list of edges in the graph. Each edge is returned as a tuple of two incident vertex indices and weight. First element in the tuple refers to the source vertex. Second element in the tuple refers to the destination vertex. Third element in the tuple is the weight of the edge. Order of the edges in the list does not matter.
+
 **Example:**
+```
 g = DirectedGraph()
 print(g.get_edges(), g.get_vertices(), sep='\n')
 edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
-(3, 1, 5), (2, 1, 23), (3, 2, 7)]
+    (3, 1, 5), (2, 1, 23), (3, 2, 7)]
 g = DirectedGraph(edges)
 print(g.get_edges(), g.get_vertices(), sep='\n')
+```
 **Output:**
+```
 []
 []
 [(0, 1, 10), (1, 4, 15), (2, 1, 23), (3, 1, 5), (3, 2, 7), (4, 0, 12), (4, 3, 3)]
 [0, 1, 2, 3, 4]
+```
 
+**is_valid_path** (self, path: []) -> bool:
 
-**is_valid_path** ​(self, path: []) -> bool:
-This method takes a list of vertex indices and returns True if the sequence of vertices
-represents a valid path in the graph (so one can travel from the first vertex in the list to the
-last vertex in the list, at each step traversing over an edge in the graph). Empty path is
-considered valid.
+This method takes a list of vertex indices and returns True if the sequence of vertices represents a valid path in the graph (so one can travel from the first vertex in the list to the last vertex in the list, at each step traversing over an edge in the graph). Empty path is considered valid.
+
 **Example:**
+```
 edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
-(3, 1, 5), (2, 1, 23), (3, 2, 7)]
+    (3, 1, 5), (2, 1, 23), (3, 2, 7)]
 g = DirectedGraph(edges)
 test_cases = [[0, 1, 4, 3], [1, 3, 2, 1], [0, 4], [4, 0], [], [2]]
 for path in test_cases:
-print(path, g.is_valid_path(path))
+    print(path, g.is_valid_path(path))
+```
 **Output:**
+```
 [0, 1, 4, 3] True
 [1, 3, 2, 1] False
 [0, 4] False
 [4, 0] True
 [] True
 [2] True
+```
 
+**dfs** (self, v_start: int, v_end=None) -> []:
 
-**dfs** ​(self, v_start: int, v_end=None) -> []:
-This method performs a depth-first search (DFS) in the graph and returns a list of vertices
-visited during the search, in the order they were visited. It takes one required parameter,
-index of the vertex from which the search will start, and one optional parameter - index of
-the ‘end’ vertex that will stop the search once that vertex is reached.
-If the starting vertex is not in the graph, the method returns an empty list (no
-exception raised). If the ‘end’ vertex is provided but is not in the graph, the
-search is done as if there was no end vertex.
-When several options are available for picking the next vertex to continue the search, method picks the vertices by vertex index in ascending order (so, for
-example, vertex 5 is explored before vertex 6).
-**bfs** ​(self, v_start: int, v_end=None) -> []:
+This method performs a depth-first search (DFS) in the graph and returns a list of vertices visited during the search, in the order they were visited. It takes one required parameter, index of the vertex from which the search will start, and one optional parameter - index of the ‘end’ vertex that will stop the search once that vertex is reached. If the starting vertex is not in the graph, the method returns an empty list (no exception raised). If the ‘end’ vertex is provided but is not in the graph, the search is done as if there was no end vertex. When several options are available for picking the next vertex to continue the search, method picks the vertices by vertex index in ascending order (so, for example, vertex 5 is explored before vertex 6).
+
+**bfs** (self, v_start: int, v_end=None) -> []:
+
 This method works the same as DFS above, except it implements a breadth-first search.
+
 **Example:**
+```
 edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
-(3, 1, 5), (2, 1, 23), (3, 2, 7)]
+    (3, 1, 5), (2, 1, 23), (3, 2, 7)]
 g = DirectedGraph(edges)
 for start in range(5):
-print(f'{start} DFS:{g.dfs(start)} BFS:{g.bfs(start)}')
+    print(f'{start} DFS:{g.dfs(start)} BFS:{g.bfs(start)}')
+```
 **Output:**
+```
 0 DFS:[0, 1, 4, 3, 2] BFS:[0, 1, 4, 3, 2]
 1 DFS:[1, 4, 0, 3, 2] BFS:[1, 4, 0, 3, 2]
 2 DFS:[2, 1, 4, 0, 3] BFS:[2, 1, 4, 0, 3]
 3 DFS:[3, 1, 4, 0, 2] BFS:[3, 1, 2, 4, 0]
 4 DFS:[4, 0, 1, 3, 2] BFS:[4, 0, 3, 1, 2]
+```
 
+**has_cycle** (self) -> bool:
 
-**has_cycle** ​(self) -> bool:
-This method returns True if there is at least one cycle in the graph. If the graph is acyclic,
-the method returns False.
+This method returns True if there is at least one cycle in the graph. If the graph is acyclic, the method returns False.
+
 **Example:**
+```
 edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
-(3, 1, 5), (2, 1, 23), (3, 2, 7)]
+    (3, 1, 5), (2, 1, 23), (3, 2, 7)]
 g = DirectedGraph(edges)
 edges_to_remove = [(3, 1), (4, 0), (3, 2)]
 for src, dst in edges_to_remove:
-g.remove_edge(src, dst)
-print(g.get_edges(), g.has_cycle(), sep='\n')
+    g.remove_edge(src, dst)
+    print(g.get_edges(), g.has_cycle(), sep='\n')
 edges_to_add = [(4, 3), (2, 3), (1, 3), (4, 0)]
 for src, dst in edges_to_add:
-g.add_edge(src, dst)
-print(g.get_edges(), g.has_cycle(), sep='\n')
+    g.add_edge(src, dst)
+    print(g.get_edges(), g.has_cycle(), sep='\n')
 print('\n', g)
+```
 **Output:**
+```
 [(0, 1, 10), (1, 4, 15), (2, 1, 23), (3, 2, 7), (4, 0, 12), (4, 3, 3)]
 True
 [(0, 1, 10), (1, 4, 15), (2, 1, 23), (3, 2, 7), (4, 3, 3)]
@@ -414,41 +422,42 @@ False
 [(0, 1, 10), (1, 3, 1), (1, 4, 15), (2, 1, 23), (2, 3, 1), (4, 0, 1), (4, 3, 1)]
 True
 GRAPH (5 vertices):
-| 0 1 2 3 4
-.....................
+  | 0 1 2 3 4
+................
 0 | 0 10 0 0 0
 1 | 0 0 0 1 15
 2 | 0 23 0 1 0
 3 | 0 0 0 0 0
 4 | 1 0 0 1 0
+```
 
+**dijkstra** (self, src: int) -> []:
 
-**dijkstra** ​(self, src: int) -> []:
-This method implements the Dijkstra algorithm to compute the length of the shortest path
-from a given vertex to all other vertices in the graph. It returns a list with one value per
-each vertex in the graph, where value at index 0 is the length of the shortest path from
-vertex SRC to vertex 0, value at index 1 is the length of the shortest path from vertex SRC
-to vertex 1 etc. If a certain vertex is not reachable from SRC, returned value will be
-INFINITY (in Python, use float(‘inf’)).
+This method implements the Dijkstra algorithm to compute the length of the shortest path from a given vertex to all other vertices in the graph. It returns a list with one value per each vertex in the graph, where value at index 0 is the length of the shortest path from vertex SRC to vertex 0, value at index 1 is the length of the shortest path from vertex SRC to vertex 1 etc. If a certain vertex is not reachable from SRC, returned value will be INFINITY (in Python, use float(‘inf’)).
+
 **Example:**
+```
 edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
-(3, 1, 5), (2, 1, 23), (3, 2, 7)]
+    (3, 1, 5), (2, 1, 23), (3, 2, 7)]
 g = DirectedGraph(edges)
 for i in range(5):
-print(f'DIJKSTRA {i} {g.dijkstra(i)}')
+    print(f'DIJKSTRA {i} {g.dijkstra(i)}')
 g.remove_edge(4, 3)
 print('\n', g)
 for i in range(5):
-print(f'DIJKSTRA {i} {g.dijkstra(i)}')
+    print(f'DIJKSTRA {i} {g.dijkstra(i)}')
+```
 **Output:**
+```
 DIJKSTRA 0 [0, 10, 35, 28, 25]
 DIJKSTRA 1 [27, 0, 25, 18, 15]
 DIJKSTRA 2 [50, 23, 0, 41, 38]
 DIJKSTRA 3 [32, 5, 7, 0, 20]
 DIJKSTRA 4 [12, 8, 10, 3, 0]
+
 GRAPH (5 vertices):
-   |  0  1  2  3  4
-.....................
+  | 0 1 2 3 4
+................
 0 | 0 10 0 0 0
 1 | 0 0 0 0 15
 2 | 0 23 0 0 0
@@ -459,3 +468,4 @@ DIJKSTRA 1 [27, 0, inf, inf, 15]
 DIJKSTRA 2 [50, 23, 0, inf, 38]
 DIJKSTRA 3 [32, 5, 7, 0, 20]
 DIJKSTRA 4 [12, 22, inf, inf, 0]
+```
