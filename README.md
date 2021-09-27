@@ -25,14 +25,10 @@
 4. The number of vertices in the graph must be between 0 and 900 inclusive. The number of edges must be less than 10,000.
 
 ### Undirected Graph Methods
-**add_vertex** ​(self, v: str) -> None:
-This method adds a new vertex to the graph. Vertex names can be any string. If vertex with
-the same name is already present in the graph, the method does nothing (no exception raised).
-**add_edge** ​(self, u: str, v: str) -> None:
-This method adds a new edge to the graph, connecting two vertices with provided names. If
-either (or both) vertex names do not exist in the graph, this method will first create them
-and then create an edge between them. If an edge already exists in the graph, or if ​u​ and ​v
-refer to the same vertex, the method does nothing (no exception raised).
+**add_vertex** (self, v: str) -> None:
+This method adds a new vertex to the graph. Vertex names can be any string. If vertex with the same name is already present in the graph, the method does nothing (no exception raised).
+**add_edge** (self, u: str, v: str) -> None:
+This method adds a new edge to the graph, connecting two vertices with provided names. If either (or both) vertex names do not exist in the graph, this method will first create them and then create an edge between them. If an edge already exists in the graph, or if u and v refer to the same vertex, the method does nothing (no exception raised).
 **Example #1:**
 g = UndirectedGraph()
 print(g)
@@ -217,7 +213,6 @@ remove QG False
 add FG True
 remove GE False
   
-  
 ***
 
 ![Directed graph](https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Directed_acyclic_graph_2.svg/299px-Directed_acyclic_graph_2.svg.png)
@@ -242,7 +237,7 @@ remove GE False
 4. The number of vertices in the graph must be between 0 and 900 inclusive. The number of edges must be less than 10,000.
 
 ### Directed Graph Methods
-**add_vertex** ​(self)​ -> int:
+**add_vertex** (self) -> int:
 This method adds a new vertex to the graph. Vertex name does not need to be provided,
 instead vertex will be assigned a reference index (integer). First vertex created in the graph
 will be assigned index 0, subsequent vertices will have indexes 1, 2, 3 etc. This ​method
