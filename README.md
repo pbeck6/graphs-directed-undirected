@@ -3,8 +3,7 @@
 
 ## Part 1 Undirected Graph (via Adjacency List)
 
-1. UndirectedGraph class is designed to support the following type of
-    graph: undirected, unweighted, no duplicate edges, no loops. Cycles are allowed.
+1. UndirectedGraph class is designed to support the following type of graph: undirected, unweighted, no duplicate edges, no loops. Cycles are allowed.
 2.  Includes the following methods:
     - add_vertex()
     - add_edge() 
@@ -17,12 +16,9 @@
     - bfs()
     - count_connected_components()
     - has_cycle()
-3. Undirected graphs are stored as a Python dictionary of lists where keys are
-    vertex names (strings) and associated values are Python lists with names (in any
-    order) of vertices connected to the 'key' vertex.​ ​So for the graph pictured below:
-    self.adj_list = {'A': ['B', 'C'], 'B': ['A', 'C', 'D'], 'C': ['B', 'A'], 'D': ['B']}
-4. The number of vertices in the graph must be between 0 and 900 inclusive. The
-    number of edges must be less than 10,000.
+3. Undirected graphs are stored as a Python dictionary of lists where keys are vertex names (strings) and associated values are Python lists with names (in any order) of vertices connected to the 'key' vertex. So for the graph pictured below:
+self.adj_list = {'A': ['B', 'C'], 'B': ['A', 'C', 'D'], 'C': ['B', 'A'], 'D': ['B']}
+5. The number of vertices in the graph must be between 0 and 900 inclusive. The number of edges must be less than 10,000.
 
 
 **add_vertex** ​(self, v: str) -> None:
