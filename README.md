@@ -6,17 +6,17 @@
 1. UndirectedGraph class is designed to support the following type of
     graph: undirected, unweighted, no duplicate edges, no loops. Cycles are allowed.
 2.  Includes the following methods:
-   - add_vertex()
-   - add_edge() 
-   - remove_edge()
-   - remove_vertex()
-   - get_vertices()
-   - get_edges()
-   - is_valid_path()
-   - dfs()
-   - bfs()
-   - count_connected_components()
-   - has_cycle()
+    - add_vertex()
+    - add_edge() 
+    - remove_edge()
+    - remove_vertex()
+    - get_vertices()
+    - get_edges()
+    - is_valid_path()
+    - dfs()
+    - bfs()
+    - count_connected_components()
+    - has_cycle()
 3. Undirected graphs are stored as a Python dictionary of lists where keys are
     vertex names (strings) and associated values are Python lists with names (in any
     order) of vertices connected to the 'key' vertex.​ ​So for the graph pictured below:
@@ -219,21 +219,21 @@ remove GE False
 
 
 ## Part 2 Directed Graph (via Adjacency Matrix)
-1. D​irectedGraph class is designed to support the following type of graph:
+1. DirectedGraph class is designed to support the following type of graph:
 directed, weighted (positive edge weights only), no duplicate edges, no loops. Cycles
 are allowed.
 
 2. Includes the following methods:
-   - add_vertex() 
-   - add_edge() 
-   - remove_edge() 
-   - get_vertices() 
-   - get_edges() 
-   - is_valid_path()
-   - dfs()
-   - bfs() 
-   - has_cycle()
-   - dijkstra()
+    - add_vertex() 
+    - add_edge() 
+    - remove_edge() 
+    - get_vertices() 
+    - get_edges() 
+    - is_valid_path()
+    - dfs()
+    - bfs() 
+    - has_cycle()
+    - dijkstra()
 3. Directed graphs are stored as a two dimensional matrix, which is a list of lists
     in Python. Element on the ​i​-th row and ​j​-th column in the matrix is the weight of
     the edge going from the vertex with index ​i​ to the vertex with index ​j​. If there is no
