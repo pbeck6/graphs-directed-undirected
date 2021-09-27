@@ -59,14 +59,16 @@ D: ['B', 'C', 'E']
 E: ['C', 'D']}
 ```
 
-**remove_edge** ​(self, u: str, v: str) -> None:
-This method removes an edge between two vertices with provided names. If either (or
-both) vertex names do not exist in the graph, or if there is no edge between them, the
-method does nothing (no exception raised).
-**remove_vertex** ​(self, v: str) -> None:
-This method removes a vertex with a given name and all edges incident to it from the
-graph. If the given vertex does not exist, the method does nothing (no exception raised).
+**remove_edge** (self, u: str, v: str) -> None:
+
+This method removes an edge between two vertices with provided names. If either (or both) vertex names do not exist in the graph, or if there is no edge between them, the method does nothing (no exception raised).
+
+**remove_vertex** (self, v: str) -> None:
+
+This method removes a vertex with a given name and all edges incident to it from the graph. If the given vertex does not exist, the method does nothing (no exception raised).
+
 **Example #1:**
+```
 g = UndirectedGraph(['AB', 'AC', 'BC', 'BD', 'CD', 'CE', 'DE'])
 g.remove_vertex('DOES NOT EXIST')
 g.remove_edge('A', 'B')
@@ -74,7 +76,9 @@ g.remove_edge('X', 'B')
 print(g)
 g.remove_vertex('D')
 print(g)
+```
 **Output:**
+```
 GRAPH: {
 A: ['C']
 B: ['C', 'D']
@@ -82,36 +86,44 @@ C: ['A', 'B', 'D', 'E']
 D: ['B', 'C', 'E']
 E: ['C', 'D']}
 GRAPH: {A: ['C'], B: ['C'], C: ['A', 'B', 'E'], E: ['C']}
+```
 
+**get_vertices** (self) -> []:
 
-**get_vertices** ​(self) -> []:
-This method returns a list of vertices of the graph. Order of the vertices in the list does not
-matter.
-**get_edges** ​(self) -> []:
-This method returns a list of edges in the graph. Each edge is returned as a tuple of two
-incident vertex names. Order of the edges in the list or order of the vertices incident to each
-edge does not matter.
+This method returns a list of vertices of the graph. Order of the vertices in the list does not matter.
+
+**get_edges** (self) -> []:
+
+This method returns a list of edges in the graph. Each edge is returned as a tuple of two incident vertex names. Order of the edges in the list or order of the vertices incident to each edge does not matter.
+
 **Example #1:**
+```
 g = UndirectedGraph()
 print(g.get_edges(), g.get_vertices(), sep='\n')
 g = UndirectedGraph(['AB', 'AC', 'BC', 'BD', 'CD', 'CE'])
 print(g.get_edges(), g.get_vertices(), sep='\n')
+```
 **Output:**
+```
 []
 []
 [('A', 'B'), ('A', 'C'), ('B', 'C'), ('B', 'D'), ('C', 'D'), ('C', 'E')]
 ['A', 'B', 'C', 'D', 'E']
-**is_valid_path** ​(self, path: []) -> bool:
-This method takes a list of vertex names and returns True if the sequence of vertices
-represents a valid path in the graph (so one can travel from the first vertex in the list to the
-last vertex in the list, at each step traversing over an edge in the graph). Empty path is
-considered valid.
+```
+
+**is_valid_path** (self, path: []) -> bool:
+
+This method takes a list of vertex names and returns True if the sequence of vertices represents a valid path in the graph (so one can travel from the first vertex in the list to the last vertex in the list, at each step traversing over an edge in the graph). Empty path is considered valid.
+
 **Example #1:**
+```
 g = UndirectedGraph(['AB', 'AC', 'BC', 'BD', 'CD', 'CE', 'DE'])
 test_cases = ['ABC', 'ADE', 'ECABDCBE', 'ACDECB', '', 'D', 'Z']
 for path in test_cases:
-print(list(path), g.is_valid_path(list(path)))
+    print(list(path), g.is_valid_path(list(path)))
+```
 **Output:**
+```
 ['A', 'B', 'C'] True
 ['A', 'D', 'E'] False
 ['E', 'C', 'A', 'B', 'D', 'C', 'B', 'E'] False
@@ -119,31 +131,30 @@ print(list(path), g.is_valid_path(list(path)))
 [] True
 ['D'] True
 ['Z'] False
+```
 
+**dfs** (self, v_start: str, v_end=None) -> []:
 
-**dfs** ​(self, v_start: str, v_end=None) -> []:
-This method performs a depth-first search (DFS) in the graph and returns a list of vertices
-visited during the search, in the order they were visited. It takes one required parameter,
-name of the vertex from which the search will start, and one optional parameter - name of
-the ‘end’ vertex that will stop the search once that vertex is reached.
-If the starting vertex is not in the graph, the method returns an empty list (no
-exception raised). If the name of the ‘end’ vertex is provided but is not in the
-graph, the search is done as if there was no end vertex.
-When several options are available for picking the next vertex to continue the search, method picks the vertices in ascending lexicographical order (so, for example,
-vertex ‘APPLE’ is explored before vertex ‘BANANA’).
-**bfs** ​(self, v_start: str, v_end=None) -> []:
+This method performs a depth-first search (DFS) in the graph and returns a list of vertices visited during the search, in the order they were visited. It takes one required parameter, name of the vertex from which the search will start, and one optional parameter - name of the ‘end’ vertex that will stop the search once that vertex is reached. If the starting vertex is not in the graph, the method returns an empty list (no exception raised). If the name of the ‘end’ vertex is provided but is not in the graph, the search is done as if there was no end vertex. When several options are available for picking the next vertex to continue the search, method picks the vertices in ascending lexicographical order (so, for example, vertex ‘APPLE’ is explored before vertex ‘BANANA’).
+
+**bfs** (self, v_start: str, v_end=None) -> []:
+
 This method works the same as DFS above, except it implements a breadth-first search.
+
 **Example #1:**
+```
 edges = ['AE', 'AC', 'BE', 'CE', 'CD', 'CB', 'BD', 'ED', 'BH', 'QG', 'FG']
 g = UndirectedGraph(edges)
 test_cases = 'ABCDEGH'
 for case in test_cases:
-print(f'{case} DFS:{g.dfs(case)} BFS:{g.bfs(case)}')
+    print(f'{case} DFS:{g.dfs(case)} BFS:{g.bfs(case)}')
 print('...................')
 for i in range(1, len(test_cases)):
-v1, v2 = test_cases[i], test_cases[-1 - i]
-print(f'{v1}-{v2} DFS:{g.dfs(v1, v2)} BFS:{g.bfs(v1, v2)}')
+    v1, v2 = test_cases[i], test_cases[-1 - i]
+    print(f'{v1}-{v2} DFS:{g.dfs(v1, v2)} BFS:{g.bfs(v1, v2)}')
+```
 **Output:**
+```
 A DFS:['A', 'C', 'B', 'D', 'E', 'H'] BFS:['A', 'C', 'E', 'B', 'D', 'H']
 B DFS:['B', 'C', 'A', 'E', 'D', 'H'] BFS:['B', 'C', 'D', 'E', 'H', 'A']
 C DFS:['C', 'A', 'E', 'B', 'D', 'H'] BFS:['C', 'A', 'B', 'D', 'E', 'H']
@@ -158,45 +169,55 @@ D-D DFS:['D'] BFS:['D']
 E-C DFS:['E', 'A', 'C'] BFS:['E', 'A', 'B', 'C']
 G-B DFS:['G', 'F', 'Q'] BFS:['G', 'F', 'Q']
 H-A DFS:['H', 'B', 'C', 'A'] BFS:['H', 'B', 'C', 'D', 'E', 'A']
+```
 
 
-**count_connected_components** ​(self) -> int:
+**count_connected_components** (self) -> int:
+
 This method returns the number of connected components in the graph.
+
 **Example #1:**
+```
 edges = ['AE', 'AC', 'BE', 'CE', 'CD', 'CB', 'BD', 'ED', 'BH', 'QG', 'FG']
 g = UndirectedGraph(edges)
 test_cases = (
-'add QH', 'remove FG', 'remove GQ', 'remove HQ',
-'remove AE', 'remove CA', 'remove EB', 'remove CE', 'remove DE',
-'remove BC', 'add EA', 'add EF', 'add GQ', 'add AC', 'add DQ',
-'add EG', 'add QH', 'remove CD', 'remove BD', 'remove QG')
+    'add QH', 'remove FG', 'remove GQ', 'remove HQ',
+    'remove AE', 'remove CA', 'remove EB', 'remove CE', 'remove DE',
+    'remove BC', 'add EA', 'add EF', 'add GQ', 'add AC', 'add DQ',
+    'add EG', 'add QH', 'remove CD', 'remove BD', 'remove QG')
 for case in test_cases:
-command, edge = case.split()
-u, v = edge
-g.add_edge(u, v) if command == 'add' else g.remove_edge(u, v)
-print(g.count_connected_components(), end=' ')
+    command, edge = case.split()
+    u, v = edge
+    g.add_edge(u, v) if command == 'add' else g.remove_edge(u, v)
+    print(g.count_connected_components(), end=' ')
+```
 **Output:**
+```
 1 2 3 4 4 5 5 5 6 6 5 4 3 2 1 1 1 1 1 2
+```
 
+**has_cycle** (self) -> bool:
 
-**has_cycle** ​(self) -> bool:
-This method returns True if there is at least one cycle in the graph. If the graph is acyclic,
-the method returns False.
+This method returns True if there is at least one cycle in the graph. If the graph is acyclic, the method returns False.
+
 **Example #1:**
+```
 edges = ['AE', 'AC', 'BE', 'CE', 'CD', 'CB', 'BD', 'ED', 'BH', 'QG', 'FG']
 g = UndirectedGraph(edges)
 test_cases = (
-'add QH', 'remove FG', 'remove GQ', 'remove HQ',
-'remove AE', 'remove CA', 'remove EB', 'remove CE', 'remove DE',
-'remove BC', 'add EA', 'add EF', 'add GQ', 'add AC', 'add DQ',
-'add EG', 'add QH', 'remove CD', 'remove BD', 'remove QG',
-'add FG', 'remove GE')
+    'add QH', 'remove FG', 'remove GQ', 'remove HQ',
+    'remove AE', 'remove CA', 'remove EB', 'remove CE', 'remove DE',
+    'remove BC', 'add EA', 'add EF', 'add GQ', 'add AC', 'add DQ',
+    'add EG', 'add QH', 'remove CD', 'remove BD', 'remove QG',
+    'add FG', 'remove GE')
 for case in test_cases:
-command, edge = case.split()
-u, v = edge
-g.add_edge(u, v) if command == 'add' else g.remove_edge(u, v)
-print('{:<10}'.format(case), g.has_cycle())
+    command, edge = case.split()
+    u, v = edge
+    g.add_edge(u, v) if command == 'add' else g.remove_edge(u, v)
+    print('{:<10}'.format(case), g.has_cycle())
+```
 **Output:**
+```
 add QH True
 remove FG True
 remove GQ True
@@ -219,6 +240,7 @@ remove BD False
 remove QG False
 add FG True
 remove GE False
+```
   
 ***
 
