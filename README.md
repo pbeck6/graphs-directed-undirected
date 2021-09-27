@@ -3,7 +3,7 @@
 
 ![Undirected graph](https://upload.wikimedia.org/wikipedia/commons/5/57/6n-graf.png)
 
-## Part 1 Undirected Graph (via Adjacency List)
+## Part 1 Undirected Graph (via Adjacency List) - ud_graph.py
 
 1. UndirectedGraph class is designed to support the following type of graph: undirected, unweighted, no duplicate edges, no loops. Cycles are allowed.
 2. Includes the following methods:
@@ -34,7 +34,7 @@ This method adds a new vertex to the graph. Vertex names can be any string. If v
 This method adds a new edge to the graph, connecting two vertices with provided names. If either (or both) vertex names do not exist in the graph, this method will first create them and then create an edge between them. If an edge already exists in the graph, or if u and v refer to the same vertex, the method does nothing (no exception raised).
 
 **Example #1:**
-
+```
 g = UndirectedGraph()
 print(g)
 for v in 'ABCDE':
@@ -45,6 +45,7 @@ print(g)
 for u, v in ['AB', 'AC', 'BC', 'BD', 'CD', 'CE', 'DE', ('B', 'C')]:
 g.add_edge(u, v)
 print(g)
+```
 **Output:**
 GRAPH: {}
 GRAPH: {A: [], B: [], C: [], D: [], E: []}
@@ -222,7 +223,7 @@ remove GE False
 
 ![Directed graph](https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Directed_acyclic_graph_2.svg/299px-Directed_acyclic_graph_2.svg.png)
 
-## Part 2 Directed Graph (via Adjacency Matrix)
+## Part 2 Directed Graph (via Adjacency Matrix) - d_graph.py
 1. DirectedGraph class is designed to support the following type of graph: directed, weighted (positive edge weights only), no duplicate edges, no loops. Cycles are allowed.
 2. Includes the following methods:
     - add_vertex() 
