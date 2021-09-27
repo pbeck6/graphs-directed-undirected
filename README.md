@@ -16,9 +16,10 @@
     - bfs()
     - count_connected_components()
     - has_cycle()
-3. Undirected graphs are stored as a Python dictionary of lists where keys are vertex names (strings) and associated values are Python lists with names (in any order) of vertices connected to the 'key' vertex. So for the graph pictured below:
+3. Undirected graphs are stored as a Python dictionary of lists where keys are vertex names (strings) and associated values are Python lists with names (in any order) of vertices connected to the 'key' vertex. An example would be:
 
-self.adj_list = {'A': ['B', 'C'], 'B': ['A', 'C', 'D'], 'C': ['B', 'A'], 'D': ['B']}
+    self.adj_list = {'A': ['B', 'C'], 'B': ['A', 'C', 'D'], 'C': ['B', 'A'], 'D': ['B']}
+
 5. The number of vertices in the graph must be between 0 and 900 inclusive. The number of edges must be less than 10,000.
 
 
