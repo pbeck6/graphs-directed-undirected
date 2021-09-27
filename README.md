@@ -38,12 +38,12 @@ This method adds a new edge to the graph, connecting two vertices with provided 
 g = UndirectedGraph()
 print(g)
 for v in 'ABCDE':
-g.add_vertex(v)
+    g.add_vertex(v)
 print(g)
 g.add_vertex('A')
 print(g)
 for u, v in ['AB', 'AC', 'BC', 'BD', 'CD', 'CE', 'DE', ('B', 'C')]:
-g.add_edge(u, v)
+    g.add_edge(u, v)
 print(g)
 ```
 **Output:**
