@@ -47,6 +47,7 @@ for u, v in ['AB', 'AC', 'BC', 'BD', 'CD', 'CE', 'DE', ('B', 'C')]:
 print(g)
 ```
 **Output:**
+```
 GRAPH: {}
 GRAPH: {A: [], B: [], C: [], D: [], E: []}
 GRAPH: {A: [], B: [], C: [], D: [], E: []}
@@ -56,7 +57,7 @@ B: ['A', 'C', 'D']
 C: ['A', 'B', 'D', 'E']
 D: ['B', 'C', 'E']
 E: ['C', 'D']}
-
+```
 
 **remove_edge** ​(self, u: str, v: str) -> None:
 This method removes an edge between two vertices with provided names. If either (or
