@@ -217,6 +217,8 @@ remove QG False
 add FG True
 remove GE False
 
+***
+
 ![Directed graph](https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Directed_acyclic_graph_2.svg/299px-Directed_acyclic_graph_2.svg.png)
 
 ## Part 2 Directed Graph (via Adjacency Matrix)
