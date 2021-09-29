@@ -251,16 +251,16 @@ remove GE False
 
 1. DirectedGraph class is designed to support the following type of graph: directed, weighted (positive edge weights only), no duplicate edges, no loops. Cycles are allowed.
 2. Includes the following methods:
-    - [add_vertex()]() 
-    - [add_edge()]() 
-    - [remove_edge()]() 
-    - [get_vertices()]() 
-    - [get_edges()]()
-    - [is_valid_path()]()
-    - [dfs()]()
-    - [bfs()]()
-    - [has_cycle()]()
-    - [dijkstra()]()
+    - [add_vertex()](#-add_vertex-self---int) 
+    - [add_edge()](#-add_edge-self-src-int-dst-int-weight1---none) 
+    - [remove_edge()](#-remove_edge-self-u-int-v-int---none) 
+    - [get_vertices()](#-get_vertices-self----1) 
+    - [get_edges()](#-get_edges-self----1)
+    - [is_valid_path()](#-is_valid_path-self-path----bool-1)
+    - [dfs()](#-dfs-self-v_start-int-v_endnone---)
+    - [bfs()](#-bfs-self-v_start-int-v_endnone---)
+    - [has_cycle()](#-has_cycle-self---bool-1)
+    - [dijkstra()](#-dijkstra-self-src-int---)
 3. Directed graphs are stored as a two dimensional matrix, which is a list of lists in Python. Element on the i-th row and j-th column in the matrix is the weight of the edge going from the vertex with index i to the vertex with index j. If there is no edge between those vertices, the value is zero. An example would be:
 
     self.adj_matrix = [[0, 10, 0, 0], [0, 0, 20, 5], [30, 0, 0, 0], [0, 0, 0, 0]]
