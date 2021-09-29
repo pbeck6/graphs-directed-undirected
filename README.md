@@ -7,7 +7,7 @@
 
 1. UndirectedGraph class is designed to support the following type of graph: undirected, unweighted, no duplicate edges, no loops. Cycles are allowed.
 2. Includes the following methods:
-    - add_vertex()
+    - [add_vertex()](https://github.com/stoneroll6/graphs-directed-undirected/blob/main/README.md#-add_vertex-self-v-str---none)
     - add_edge() 
     - remove_edge()
     - remove_vertex()
