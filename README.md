@@ -8,16 +8,16 @@
 1. UndirectedGraph class is designed to support the following type of graph: undirected, unweighted, no duplicate edges, no loops. Cycles are allowed.
 2. Includes the following methods:
     - [add_vertex()](#-add_vertex-self-v-str---none)
-    - add_edge() 
-    - remove_edge()
-    - remove_vertex()
-    - get_vertices()
-    - get_edges()
-    - is_valid_path()
-    - dfs()
-    - bfs()
-    - count_connected_components()
-    - has_cycle()
+    - [add_edge()](#-add_edge-self-u-str-v-str---none) 
+    - [remove_edge()](#-remove_edge-self-u-str-v-str---none)
+    - [remove_vertex()](#-remove_vertex-self-v-str---none)
+    - [get_vertices()](#-get_vertices-self---)
+    - [get_edges()](#-get_edges-self---)
+    - [is_valid_path()](#-is_valid_path-self-path----bool)
+    - [dfs()](#-dfs-self-v_start-str-v_endnone---)
+    - [bfs()](#-bfs-self-v_start-str-v_endnone---)
+    - [count_connected_components()](#-count_connected_components-self---int)
+    - [has_cycle()](#-has_cycle-self---bool)
 3. Undirected graphs are stored as a Python dictionary of lists where keys are vertex names (strings) and associated values are Python lists with names (in any order) of vertices connected to the 'key' vertex. An example would be:
 
     self.adj_list = {'A': ['B', 'C'], 'B': ['A', 'C', 'D'], 'C': ['B', 'A'], 'D': ['B']}
@@ -251,16 +251,16 @@ remove GE False
 
 1. DirectedGraph class is designed to support the following type of graph: directed, weighted (positive edge weights only), no duplicate edges, no loops. Cycles are allowed.
 2. Includes the following methods:
-    - add_vertex() 
-    - add_edge() 
-    - remove_edge() 
-    - get_vertices() 
-    - get_edges() 
-    - is_valid_path()
-    - dfs()
-    - bfs() 
-    - has_cycle()
-    - dijkstra()
+    - [add_vertex()]() 
+    - [add_edge()]() 
+    - [remove_edge()]() 
+    - [get_vertices()]() 
+    - [get_edges()]()
+    - [is_valid_path()]()
+    - [dfs()]()
+    - [bfs()]()
+    - [has_cycle()]()
+    - [dijkstra()]()
 3. Directed graphs are stored as a two dimensional matrix, which is a list of lists in Python. Element on the i-th row and j-th column in the matrix is the weight of the edge going from the vertex with index i to the vertex with index j. If there is no edge between those vertices, the value is zero. An example would be:
 
     self.adj_matrix = [[0, 10, 0, 0], [0, 0, 20, 5], [30, 0, 0, 0], [0, 0, 0, 0]]
